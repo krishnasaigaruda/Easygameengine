@@ -1,0 +1,12 @@
+{
+  "name": "@ege/runtime",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.21.0",
+    "three": "^0.186.1"
+  }
+}

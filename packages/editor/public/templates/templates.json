@@ -1,0 +1,174 @@
+{
+  "templates": [
+    {
+      "id": "tutorial-3d",
+      "name": "Tutorial 3D",
+      "dimension": "3d",
+      "description": "Learn the basics in 5 minutes: move around, play, and make a coin.",
+      "file": "tutorial-3d.egeproj",
+      "guide": {
+        "title": "Your first 3D game",
+        "steps": [
+          {
+            "title": "Look around",
+            "text": "Hold the right mouse button and move the mouse to look around. Use WASD while holding it to fly, and the mouse wheel to zoom.",
+            "done": {
+              "cameraMoved": true
+            }
+          },
+          {
+            "title": "Select the Player",
+            "text": "Click the orange capsule in the view, or \"Player\" in the Hierarchy on the left. The Inspector on the right shows what it's made of.",
+            "done": {
+              "selected": "Player"
+            }
+          },
+          {
+            "title": "Play the game",
+            "text": "Press the Play button at the top (the triangle). Walk with WASD, jump with Space.",
+            "done": {
+              "played": true
+            }
+          },
+          {
+            "title": "Collect the coin",
+            "text": "Walk into the spinning gold coin. Your score goes up.",
+            "done": {
+              "scored": 1
+            }
+          },
+          {
+            "title": "Stop the game",
+            "text": "Press Stop (the square at the top), or Esc. Everything goes back to how it was.",
+            "done": {
+              "stopped": true
+            }
+          },
+          {
+            "title": "Add a box",
+            "text": "Click Create (top left), then 3D Shapes, then Cube.",
+            "done": {
+              "exists": "Cube"
+            }
+          },
+          {
+            "title": "Move it",
+            "text": "With the Move tool, drag the arrows on the cube to put it somewhere new. Or drag the cube itself.",
+            "done": {
+              "moved": "Cube"
+            }
+          },
+          {
+            "title": "Make it a coin",
+            "text": "In the Inspector, click Add Component, choose Traits, and tick Collectible.",
+            "done": {
+              "trait": {
+                "name": "Cube",
+                "trait": "collectible"
+              }
+            }
+          },
+          {
+            "title": "Play your game",
+            "text": "Press Play and collect your new coin.",
+            "done": {
+              "played": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "tutorial-2d",
+      "name": "Tutorial 2D",
+      "dimension": "2d",
+      "description": "Learn 2D in 5 minutes: run, jump, collect, and build a level.",
+      "file": "tutorial-2d.egeproj",
+      "guide": {
+        "title": "Your first 2D game",
+        "steps": [
+          {
+            "title": "Look around",
+            "text": "Drag in the view to move around the level, and use the mouse wheel to zoom.",
+            "done": {
+              "cameraMoved": true
+            }
+          },
+          {
+            "title": "Select the Player",
+            "text": "Click the orange rectangle, or \"Player\" in the Hierarchy. The Inspector shows its parts: a Sprite (how it looks), a Character Controller (how it moves) and Traits.",
+            "done": {
+              "selected": "Player"
+            }
+          },
+          {
+            "title": "Play the game",
+            "text": "Press Play (the triangle at the top). A and D (or the arrows) run, Space jumps.",
+            "done": {
+              "played": true
+            }
+          },
+          {
+            "title": "Collect the coin",
+            "text": "Jump onto the ledge and grab the gold coin.",
+            "done": {
+              "scored": 1
+            }
+          },
+          {
+            "title": "Stop the game",
+            "text": "Press Stop (the square at the top), or Esc.",
+            "done": {
+              "stopped": true
+            }
+          },
+          {
+            "title": "Add a platform",
+            "text": "Click Create (top left), then 2D, then Platform. It appears in the middle of the view.",
+            "done": {
+              "exists": "Platform"
+            }
+          },
+          {
+            "title": "Move it",
+            "text": "Drag the platform (or its arrows) somewhere you can jump to.",
+            "done": {
+              "moved": "Platform"
+            }
+          },
+          {
+            "title": "Add a coin",
+            "text": "Create > 2D > Circle, then in the Inspector: Add Component > Traits, tick Collectible.",
+            "done": {
+              "trait": {
+                "name": "Circle",
+                "trait": "collectible"
+              }
+            }
+          },
+          {
+            "title": "Play your level",
+            "text": "Press Play and collect everything.",
+            "done": {
+              "played": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "forest",
+      "name": "Forest",
+      "dimension": "3d",
+      "description": "A player on a path through the trees. Walk with WASD, run with Shift.",
+      "file": "forest.egeproj"
+    },
+    {
+      "id": "2d-parkour",
+      "name": "2D Parkour",
+      "dimension": "2d",
+      "description": "Jump across stone platforms: a moving platform, a jump pad, coins, a checkpoint and a star at the end.",
+      "file": "2d-parkour.egeproj"
+    }
+  ]
+}

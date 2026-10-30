@@ -1,0 +1,15 @@
+node_modules
+dist
+.DS_Store
+*.log
+coverage
+
+# Built by npm run build:player (the engine-only bundle exported games use)
+packages/editor/public/runtime/
+test-results/
+playwright-report/
+packages/editor/public/ai/
+ai-training/data/
+ai-training/.env
+ai-training/out/
+__pycache__/

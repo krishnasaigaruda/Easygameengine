@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Game Engine</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #121417;
+      }
+      #game {
+        position: fixed;
+        inset: 0;
+      }
+      .ege-error {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #d8dce3;
+        font: 15px system-ui, -apple-system, 'Segoe UI', sans-serif;
+        text-align: center;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script type="module" src="/src/player/main.ts"></script>
+  </body>
+</html>

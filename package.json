@@ -1,0 +1,36 @@
+{
+  "name": "easygameengine",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run build:player && npm run dev -w @ege/editor",
+    "build": "npm run build:player && npm run pack:ai && npm run build -w @ege/editor",
+    "test": "vitest run",
+    "typecheck": "tsc -p packages/runtime && tsc -p packages/editor --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build:player": "vite build -c packages/runtime/vite.player.config.ts --logLevel warn",
+    "test:e2e": "playwright test",
+    "pack:ai": "node scripts/pack-ai-model.mjs",
+    "ai:examples": "playwright test -c ai-training/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.56.1",
+    "@types/three": "^0.186.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "fake-indexeddb": "^6.2.6",
+    "globals": "^17.13.0",
+    "hyparquet": "^1.31.5",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^4.1.12"
+  }
+}
