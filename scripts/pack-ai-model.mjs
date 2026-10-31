@@ -3,7 +3,8 @@
  * Packs the AI assistant's model so it ships with the editor on any static host (Cloudflare
  * Pages, GitHub Pages, Netlify…), whose files are limited to ~25 MB each.
  *
- *   node scripts/pack-ai-model.mjs [model-id …]      (default: the small Qwen2.5 0.5B)
+ *   node scripts/pack-ai-model.mjs                   (keeps what's packed: npm run build runs this)
+ *   node scripts/pack-ai-model.mjs [model-id …]      (a stock WebLLM model, from Hugging Face)
  *   node scripts/pack-ai-model.mjs --local <folder> [--label "Name"] [--lib <file.wasm>]
  *        a model you trained (ai-training/train_qwen.ipynb): the WebLLM folder from your Drive
  *
@@ -12,7 +13,8 @@
  *   - a tensor bigger than that on its own (the word table) is cut into parts, which the editor
  *     joins back together when someone downloads the model;
  *   - copies the small files (config, tokenizer) and the model's WebGPU library.
- * Output: packages/editor/public/ai/ (not in git; rebuilt when missing).
+ * Output: packages/editor/public/ai/ (not in git). The assistant uses only models trained on this
+ * engine, so with nothing to add it just checks one is packed.
  */
 import { mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -22,7 +24,6 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'packages/editor/public/ai');
 const LIMIT = 24 * 1024 * 1024;
-const DEFAULT_MODELS = ['Qwen2.5-0.5B-Instruct-q4f16_1-MLC'];
 /** The WebGPU library of each model, as WebLLM's own list names it. */
 const LIB_PREFIX = 'https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_84/base/';
 const LIBS = {
@@ -179,8 +180,13 @@ if (local) {
   options.lib ??= 'Qwen3-4B-q4f16_1_cs1k-webgpu.wasm';
   await rm(join(OUT, id), { recursive: true, force: true }); // a new training round replaces the old one
   add(await pack(id));
+} else if (args.length) {
+  for (const m of args) add(await pack(m));
+} else if (!packed.some((p) => p.custom)) {
+  // A build without the trained model would have no assistant: say how to put it in.
+  console.warn('No trained model in packages/editor/public/ai. Pack it first (ai-training/README.md, step 3):\n  npm run pack:ai -- --local <the EGE-Builder folder from your Drive>');
 } else {
-  for (const m of args.length ? args : DEFAULT_MODELS) add(await pack(m));
+  console.log(`Keeping ${packed.map((p) => p.id).join(', ')}`);
 }
 await writeFile(join(OUT, 'models.json'), JSON.stringify(packed.map(({ id, lib, bytes, joined, label, custom }) => ({ id, lib, bytes, joined, label, custom })), null, 2));
 console.log(`Wrote ${join('packages/editor/public/ai', 'models.json')}`);
